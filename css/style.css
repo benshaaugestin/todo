@@ -1,0 +1,11 @@
+.content{
+  padding:5px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border-color: aqua;
+  height: 50px;
+  width: 120px;
+}
+.body{
+  background-color: rgb(255, 204, 255);
+}
