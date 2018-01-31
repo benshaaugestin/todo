@@ -21,6 +21,20 @@
   float: right;
   /*right: 0px;*/
 }
+
+.textarea-container {
+  position: relative;
+  width: 350px;
+  height: 120px;
+}
+.textarea-container textarea {
+  box-sizing: border-box;
+}
+.textarea-container button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 .save{
   position: relative;
 bottom: 0px;
