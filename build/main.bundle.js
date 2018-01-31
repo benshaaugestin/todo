@@ -7,16 +7,21 @@ window.onload = function () {
 
   while (i--) {
     values.push(localStorage.getItem(keys[i]));
-    console.log(localStorage.getItem(keys[i][0]));
+    // localStorage.setItem(keys[i][0],"active")
   }
   console.log("values");
-  values.map(function (n) {
+  values.map(function (n, index, array) {
+    console.log("map", array[index][0]);
     var li = document.createElement("li");
     var btn = document.createElement("BUTTON");
     btn.setAttribute("id", n);
     var btntext = document.createTextNode("DELETE");
     btn.appendChild(btntext);
     btn.className = "deletebtn";
+    li.onclick = function () {
+      localStorage.removeItem(n);
+      document.getElementById(n).style.display = "none";
+    };
     btn.onclick = function () {
       localStorage.removeItem(n);
       document.getElementById(n).style.display = "none";
@@ -43,11 +48,29 @@ var add = function add() {
       localStorage.removeItem(x);
       document.getElementById(x).style.display = "none";
     };
+    var editbtn = document.createElement("BUTTON");
+    var editbtntext = document.createTextNode("EDIT");
+    editbtn.appendChild(editbtntext);
+    editbtn.onclick = function () {
+      var div = document.createElement("div");
+      var editabletextarea = document.createElement("textarea");
+      editabletextarea.appendChild(document.createTextNode(x));
+      editabletextarea.className = "editablecontent";
+      var savebtn = document.createElement("BUTTON");
+      savebtn.appendChild(document.createTextNode("SAVE"));
+      savebtn.className = "save";
+      div.appendChild(savebtn);
+      div.appendChild(editabletextarea);
+      console.log(div);
+      document.getElementById(x).replaceWith(div);
+    };
     var inputValue = y;
     var t = document.createTextNode(inputValue);
     li.appendChild(t);
     li.appendChild(btn);
+    li.appendChild(editbtn);
     li.setAttribute("id", x);
+    console.log("li", li);
     document.getElementById("text").value = "";
     document.getElementById("myul").appendChild(li);
   } else {
