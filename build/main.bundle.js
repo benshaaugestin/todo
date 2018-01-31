@@ -7,19 +7,25 @@ window.onload = function () {
 
   while (i--) {
     values.push(localStorage.getItem(keys[i]));
+    console.log(localStorage.getItem(keys[i][0]));
   }
   console.log("values");
   values.map(function (n) {
     var li = document.createElement("li");
-    var t = document.createTextNode(n);
-    li.appendChild(t);
-    li.setAttribute("id", n);
-    li.onclick = function () {
+    var btn = document.createElement("BUTTON");
+    btn.setAttribute("id", n);
+    var btntext = document.createTextNode("DELETE");
+    btn.appendChild(btntext);
+    btn.className = "deletebtn";
+    btn.onclick = function () {
       localStorage.removeItem(n);
       document.getElementById(n).style.display = "none";
     };
+    var t = document.createTextNode(n);
+    li.appendChild(t);
+    li.appendChild(btn);
+    li.setAttribute("id", n);
     document.getElementById("myul").appendChild(li);
-    console.log(li);
   });
 };
 var add = function add() {
@@ -28,14 +34,20 @@ var add = function add() {
     localStorage.setItem(x, x);
     var y = localStorage.getItem(x);
     var li = document.createElement("li");
-    li.setAttribute("id", x);
-    li.onclick = function () {
+    var btn = document.createElement("BUTTON");
+    var btntext = document.createTextNode("DELETE");
+    btn.appendChild(btntext);
+    btn.className = "deletebtn";
+    btn.setAttribute("id", x);
+    btn.onclick = function () {
       localStorage.removeItem(x);
       document.getElementById(x).style.display = "none";
     };
     var inputValue = y;
     var t = document.createTextNode(inputValue);
     li.appendChild(t);
+    li.appendChild(btn);
+    li.setAttribute("id", x);
     document.getElementById("text").value = "";
     document.getElementById("myul").appendChild(li);
   } else {
