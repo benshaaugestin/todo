@@ -57,8 +57,8 @@ window.onload = ()=>{
         document.getElementById("myul").appendChild(li);
       })
 }
-const add=()=>{
-  let localStorage=window.localStorage
+document.getElementById('addBtn').addEventListener('click', function () {
+    let localStorage=window.localStorage
     let x=document.getElementById("text").value
     if(x!==""){
         localStorage.setItem(x, x);
@@ -113,4 +113,4 @@ const add=()=>{
   else {
     alert("Enter some value")
   }
-}
+});
