@@ -1,4 +1,14 @@
-window.onload = ()=>{
+if (typeof(Storage) !== "undefined") {
+console.log('Storage available');
+} else {
+console.log('Storage not  available');
+    // Sorry! No Web Storage support..
+}
+//let localStorage = window.localStorage;
+
+window.onload = () => {
+  let localStorage = window.localStorage;
+
   let values = [],
       keys = Object.keys(localStorage),
       i = keys.length;
@@ -10,31 +20,33 @@ window.onload = ()=>{
   }
 // console.log("values")
   values.map((n,index,array)=>{
+       let localStorage = window.localStorage;
+
     // console.log("map",array[index][0])
         let li = document.createElement("li");
-        let btn=document.createElement("BUTTON")
-        btn.setAttribute("id",n)
+        let btn=document.createElement("BUTTON");
+        btn.setAttribute("id",n);
         let btntext = document.createTextNode("DELETE");
-        btn.appendChild(btntext)
-        btn.className="deletebtn"
+        btn.appendChild(btntext);
+        btn.className="deletebtn";
         btn.onclick=()=>{
           // console.log(localStorage.getItem(n))
             localStorage.removeItem(n);
-            document.getElementById(n).style.display="none"
+            document.getElementById(n).style.display="none";
           }
           let editbtn=document.createElement("BUTTON")
           let editbtntext = document.createTextNode("EDIT");
-          editbtn.appendChild(editbtntext)
-          editbtn.className="deletebtn"
+          editbtn.appendChild(editbtntext);
+          editbtn.className="deletebtn";
           editbtn.onclick=()=>{
-            let div=document.createElement("li")
-            div.setAttribute("id",n)
-            let editabletextarea=document.createElement("textarea")
-            editabletextarea.setAttribute("id",n)
-            editabletextarea.appendChild(document.createTextNode(n))
+            let div=document.createElement("li");
+            div.setAttribute("id",n);
+            let editabletextarea=document.createElement("textarea");
+            editabletextarea.setAttribute("id",n);
+            editabletextarea.appendChild(document.createTextNode(n));
             // editabletextarea.className="editablecontent"
-            let savebtn=document.createElement("BUTTON")
-            savebtn.appendChild(document.createTextNode("SAVE"))
+            let savebtn=document.createElement("BUTTON");
+            savebtn.appendChild(document.createTextNode("SAVE"));
             savebtn.onclick=()=>{
               // console.log("nn",n)
               // console.log("editabletextarea.value",editabletextarea.value);
@@ -66,7 +78,8 @@ window.onload = ()=>{
         document.getElementById("myul").appendChild(li);
       })
 }
-var add=()=>{
+document.getElementById('addBtn').addEventListener('click', function () {
+    let localStorage = window.localStorage;
     let x=document.getElementById("text").value
     if(x!==""){
         localStorage.setItem(x, x);
@@ -129,4 +142,4 @@ var add=()=>{
   else {
     alert("Enter some value")
   }
-}
+});
