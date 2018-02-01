@@ -1,13 +1,13 @@
 <html>
-<script src='build/main.bundle.js'></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <body class="body" id="body">
+
 <div class="row">
   <div class="col-md-2 col-sm-4"></div>
   <div class="col-md-6 col-sm-4">
     <textarea id="text" cols="10" rows="4" class="content jumbotron" placeholder="Enter the list" ></textarea>
-    <input type="button" onClick={add()} class="btn btn-primary" value="Add to List" >
+    <input type="button" id="mybtn" onclick="add()"  class="btn btn-primary" value="Add to List" >
     </div>
   </div>
     <div class="container col-md-12 col-sm-4">
@@ -16,4 +16,6 @@
 
   </div>
 </body>
+<script src='build/main.bundle.js'></script>
+
 </html>
