@@ -1,62 +1,52 @@
 "use strict";
 
 window.onload = function () {
+  var localStorage = window.localStorage;
   var values = [],
       keys = Object.keys(localStorage),
       i = keys.length;
 
   while (i--) {
     values.push(localStorage.getItem(keys[i]));
-    // localStorage.setItem(keys[i][0],"active")
   }
-  // console.log("values")
   values.map(function (n, index, array) {
-    // console.log("map",array[index][0])
+    var localStorage = window.localStorage;
     var li = document.createElement("li");
     var btn = document.createElement("BUTTON");
     btn.setAttribute("id", n);
     var btntext = document.createTextNode("DELETE");
     btn.appendChild(btntext);
-    btn.className = "deletebtn";
+    btn.className = "btn btn-danger deletebtn";
     btn.onclick = function () {
-      // console.log(localStorage.getItem(n))
       localStorage.removeItem(n);
       document.getElementById(n).style.display = "none";
     };
     var editbtn = document.createElement("BUTTON");
     var editbtntext = document.createTextNode("EDIT");
     editbtn.appendChild(editbtntext);
-    editbtn.className = "deletebtn";
+    editbtn.className = "btn btn-success deletebtn";
     editbtn.onclick = function () {
       var div = document.createElement("li");
       div.setAttribute("id", n);
       var editabletextarea = document.createElement("textarea");
       editabletextarea.setAttribute("id", n);
       editabletextarea.appendChild(document.createTextNode(n));
-      // editabletextarea.className="editablecontent"
+      editabletextarea.className = "editablecontent";
       var savebtn = document.createElement("BUTTON");
       savebtn.appendChild(document.createTextNode("SAVE"));
+      savebtn.className = "btn btn-info deletebtn";
       savebtn.onclick = function () {
-        // console.log("nn",n)
-        // console.log("editabletextarea.value",editabletextarea.value);
         var newtext = editabletextarea.value;
-        // console.log("newtext",newtext)
         localStorage.removeItem(n);
         localStorage.setItem(newtext, newtext);
-        // btn.setAttribute("id",newtext)
         li.setAttribute("id", newtext);
         document.getElementById(n).replaceWith(li);
         n = newtext;
         var node = document.getElementById(n);
-        console.log("node", node.firstChild);
-        node.removeChild(node.firstChild);
-        node.appendChild(document.createTextNode(newtext));
-        // document.getElementById(n).nodeValue=newtext
-        // console.log("li",)
+        node.replaceChild(document.createTextNode(newtext), node.childNodes[0]);
       };
       div.appendChild(editabletextarea);
       div.appendChild(savebtn);
-      // console.log(div)
       document.getElementById(n).replaceWith(div);
     };
     var t = document.createTextNode(n);
@@ -68,6 +58,7 @@ window.onload = function () {
   });
 };
 var add = function add() {
+  var localStorage = window.localStorage;
   var x = document.getElementById("text").value;
   if (x !== "") {
     localStorage.setItem(x, x);
@@ -76,7 +67,7 @@ var add = function add() {
     var btn = document.createElement("BUTTON");
     var btntext = document.createTextNode("DELETE");
     btn.appendChild(btntext);
-    btn.className = "deletebtn";
+    btn.className = "btn btn-danger deletebtn";
     btn.setAttribute("id", x);
     btn.onclick = function () {
       localStorage.removeItem(x);
@@ -85,19 +76,18 @@ var add = function add() {
     var editbtn = document.createElement("BUTTON");
     var editbtntext = document.createTextNode("EDIT");
     editbtn.appendChild(editbtntext);
-    editbtn.className = "deletebtn";
+    editbtn.className = "btn btn-success deletebtn";
     editbtn.onclick = function () {
       var div = document.createElement("li");
       div.setAttribute("id", x);
       var editabletextarea = document.createElement("textarea");
       editabletextarea.setAttribute("id", x);
       editabletextarea.appendChild(document.createTextNode(x));
-      // editabletextarea.className="editablecontent"
       var savebtn = document.createElement("BUTTON");
       savebtn.appendChild(document.createTextNode("SAVE"));
+      savebtn.className = "btn btn-info";
       savebtn.onclick = function () {
         var newtext = editabletextarea.value;
-        console.log("newtext", newtext);
         localStorage.removeItem(x);
         localStorage.setItem(newtext, newtext);
         btn.setAttribute("id", newtext);
@@ -105,14 +95,10 @@ var add = function add() {
         document.getElementById(x).replaceWith(li);
         x = newtext;
         var node = document.getElementById(x);
-        console.log("node", node.firstChild);
-        node.removeChild(node.firstChild);
-        node.appendChild(document.createTextNode(newtext));
+        node.replaceChild(document.createTextNode(newtext), node.childNodes[0]);
       };
-      // div.className="textarea-container"
       div.appendChild(editabletextarea);
       div.appendChild(savebtn);
-      // console.log(div)
       document.getElementById(x).replaceWith(div);
     };
     var inputValue = y;
@@ -121,7 +107,6 @@ var add = function add() {
     li.appendChild(btn);
     li.appendChild(editbtn);
     li.setAttribute("id", x);
-    console.log("li", li);
     document.getElementById("text").value = "";
     document.getElementById("myul").appendChild(li);
   } else {

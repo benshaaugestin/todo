@@ -16,7 +16,7 @@ window.onload = ()=>{
         btn.setAttribute("id",n)
         let btntext = document.createTextNode("DELETE");
         btn.appendChild(btntext)
-        btn.className="deletebtn"
+        btn.className="btn btn-danger deletebtn"
         btn.onclick=()=>{
             localStorage.removeItem(n);
             document.getElementById(n).style.display="none"
@@ -24,7 +24,7 @@ window.onload = ()=>{
           let editbtn=document.createElement("BUTTON")
           let editbtntext = document.createTextNode("EDIT");
           editbtn.appendChild(editbtntext)
-          editbtn.className="deletebtn"
+          editbtn.className="btn btn-success deletebtn"
           editbtn.onclick=()=>{
             let div=document.createElement("li")
             div.setAttribute("id",n)
@@ -34,6 +34,7 @@ window.onload = ()=>{
             editabletextarea.className="editablecontent"
             let savebtn=document.createElement("BUTTON")
             savebtn.appendChild(document.createTextNode("SAVE"))
+            savebtn.className="btn btn-info deletebtn"
             savebtn.onclick=()=>{
               let newtext=editabletextarea.value
               localStorage.removeItem(n)
@@ -66,7 +67,7 @@ const add=()=>{
         let btn=document.createElement("BUTTON")
         let btntext = document.createTextNode("DELETE");
         btn.appendChild(btntext);
-        btn.className="deletebtn"
+        btn.className="btn btn-danger deletebtn"
         btn.setAttribute("id",x)
         btn.onclick=()=>{
             localStorage.removeItem(x);
@@ -75,7 +76,7 @@ const add=()=>{
         let editbtn=document.createElement("BUTTON")
         let editbtntext = document.createTextNode("EDIT");
         editbtn.appendChild(editbtntext)
-        editbtn.className="deletebtn"
+        editbtn.className="btn btn-success deletebtn"
         editbtn.onclick=()=>{
           let div=document.createElement("li")
           div.setAttribute("id",x)
@@ -84,6 +85,7 @@ const add=()=>{
           editabletextarea.appendChild(document.createTextNode(x))
           let savebtn=document.createElement("BUTTON")
           savebtn.appendChild(document.createTextNode("SAVE"))
+          savebtn.className="btn btn-info"
           savebtn.onclick=()=>{
             let newtext=editabletextarea.value
             localStorage.removeItem(x)
@@ -107,7 +109,6 @@ const add=()=>{
         li.setAttribute("id",x)
         document.getElementById("text").value=""
         document.getElementById("myul").appendChild(li);
-
   }
   else {
     alert("Enter some value")
