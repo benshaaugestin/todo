@@ -8,9 +8,9 @@ window.onload = ()=>{
       // localStorage.setItem(keys[i][0],"active")
 
   }
-console.log("values")
+// console.log("values")
   values.map((n,index,array)=>{
-    console.log("map",array[index][0])
+    // console.log("map",array[index][0])
         let li = document.createElement("li");
         let btn=document.createElement("BUTTON")
         btn.setAttribute("id",n)
@@ -18,13 +18,14 @@ console.log("values")
         btn.appendChild(btntext)
         btn.className="deletebtn"
         btn.onclick=()=>{
-          console.log(localStorage.getItem(n))
+          // console.log(localStorage.getItem(n))
             localStorage.removeItem(n);
             document.getElementById(n).style.display="none"
           }
           let editbtn=document.createElement("BUTTON")
           let editbtntext = document.createTextNode("EDIT");
           editbtn.appendChild(editbtntext)
+          editbtn.className="deletebtn"
           editbtn.onclick=()=>{
             let div=document.createElement("li")
             div.setAttribute("id",n)
@@ -35,20 +36,26 @@ console.log("values")
             let savebtn=document.createElement("BUTTON")
             savebtn.appendChild(document.createTextNode("SAVE"))
             savebtn.onclick=()=>{
-              console.log("nn",n)
-              console.log("editabletextarea.value",editabletextarea.value);
+              // console.log("nn",n)
+              // console.log("editabletextarea.value",editabletextarea.value);
               let newtext=editabletextarea.value
-              console.log("newtext",newtext)
+              // console.log("newtext",newtext)
               localStorage.removeItem(n)
               localStorage.setItem(newtext,newtext)
-              btn.setAttribute("id",newtext)
+              // btn.setAttribute("id",newtext)
               li.setAttribute("id",newtext)
                 document.getElementById(n).replaceWith(li)
                 n=newtext
+                var node=document.getElementById(n)
+                console.log("node",node.firstChild);
+                node.removeChild( node.firstChild )
+                node.appendChild( document.createTextNode(newtext) )
+                // document.getElementById(n).nodeValue=newtext
+                // console.log("li",)
             }
             div.appendChild(editabletextarea)
             div.appendChild(savebtn)
-            console.log(div)
+            // console.log(div)
             document.getElementById(n).replaceWith(div)
           }
         let t = document.createTextNode(n);
@@ -77,8 +84,10 @@ var add=()=>{
         let editbtn=document.createElement("BUTTON")
         let editbtntext = document.createTextNode("EDIT");
         editbtn.appendChild(editbtntext)
+        editbtn.className="deletebtn"
         editbtn.onclick=()=>{
           let div=document.createElement("li")
+          div.setAttribute("id",x)
           let editabletextarea=document.createElement("textarea")
           editabletextarea.setAttribute("id",x)
           editabletextarea.appendChild(document.createTextNode(x))
@@ -86,15 +95,24 @@ var add=()=>{
           let savebtn=document.createElement("BUTTON")
           savebtn.appendChild(document.createTextNode("SAVE"))
           savebtn.onclick=()=>{
-            let newtext=document.getElementById(x).value
+            let newtext=editabletextarea.value
+            console.log("newtext",newtext)
             localStorage.removeItem(x)
             localStorage.setItem(newtext,newtext)
+            btn.setAttribute("id",newtext)
+            li.setAttribute("id",newtext)
+              document.getElementById(x).replaceWith(li)
+              x=newtext
+              var node=document.getElementById(x)
+              console.log("node",node.firstChild);
+              node.removeChild( node.firstChild )
+              node.appendChild( document.createTextNode(newtext) )
 
           }
           // div.className="textarea-container"
           div.appendChild(editabletextarea)
           div.appendChild(savebtn)
-          console.log(div)
+          // console.log(div)
           document.getElementById(x).replaceWith(div)
         }
         let inputValue = y;
