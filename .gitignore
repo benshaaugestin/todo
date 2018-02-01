@@ -1,2 +1,5 @@
 *~
 .py[odc]
+node_modules/
+build/*
+.idea/*
